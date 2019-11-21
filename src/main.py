@@ -41,7 +41,7 @@ def login():
     if usercheck == None:
         return jsonify({"msg": "Bad username or password"}), 401
     # Identity can be any data that is json serializable
-    ret = {'jwt': create_jwt(identity=username)}
+    ret = {'jwt': create_jwt(identity=username), 'id':usercheck.id}
     return jsonify(ret), 200
 # Handle/serialize errors like a JSON object
 @app.errorhandler(APIException)
@@ -80,6 +80,3 @@ def handle_hello():
 if __name__ == '__main__':
     PORT = int(os.environ.get('PORT', 3000))
     app.run(host='0.0.0.0', port=PORT, debug=False)
-Contraer
-
-
